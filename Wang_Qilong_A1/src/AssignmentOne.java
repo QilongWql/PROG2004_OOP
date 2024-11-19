@@ -3,49 +3,62 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class AssignmentOne {
+    
+    //Part 3 – Using classes and objects
     public static void main(String[] args) {
         GeneralPractitioner GP1 = new GeneralPractitioner( 
-            2, "Dr. Bob Smith", "987-654-3210", "456 Elm St, Othertown, USA", "Male",
-            new String[]{"English", "French", "German"}, null
+            1, "GP - Dr Sergey Bromberg", "07-5612-7830", "58 Scarborough Street Southport, QLD 4215", "Male",
+            new String[]{"English", "French"}, "MBBS"
         );
  
         GeneralPractitioner GP2 = new GeneralPractitioner(
-            2, "Dr. Bob Smith", "987-654-3210", "456 Elm St, Othertown, USA", "Male",
-            new String[]{"English", "French", "German"}, "MBBS"
-        );
-        GP1.GeneralPDetails();
-        GP2.GeneralPDetails(); 
-
-        Psychologist Ps3 = new Psychologist(
-            2, "Dr. Bob Smith", "987-654-3210", "456 Elm St, Othertown, USA", "Male",
-            new String[]{"English", "French", "German"}, "Psychological Medicine"
+            2, "GP - Dr Justin Wong", "07-5439-4323", "23 Nind St, Southport, QLD 4215", "Male",
+            new String[]{"English", "Chinese"}, "MBBS"
         );
 
-        Ps3.PsychologistDetails();
+        GeneralPractitioner GP3 = new GeneralPractitioner(
+            3, "GP - Dr Ali Zebarjad", "07-6320-2408", "47 George St, Southport, QLD 4215", "Male",
+            new String[]{"Persian"}, "MBBS"
+        );
+
+        Psychologist Ps1 = new Psychologist(
+            4, "Ms Julie Scott - Psychology", "07-6543-3210", "2 Nineteenth Ave, Palm Beach QLD 4221", "Female",
+            new String[]{"English"}, "Psychological Medicine"
+        );
 
         String[] languages = {"English", "Spanish"};
-        Psychologist psychologist = new Psychologist(1, "Dr. Smith", "123-456-7890", 
-            "123 Main St", "Male", languages, "Clinical Psychology");
+        Psychologist Ps2 = new Psychologist(
+            5, "Dr. Smith", "07-4659-1048", 
+            "570-580 Pine Ridge Rd, Coombabah QLD 4216", "Male", languages, "Clinical Psychology");
  
-        psychologist.PsychologistDetails();
-
-        LocalTime preferredTime = LocalTime.of(10, 0);
-        Appointment Ap1 = new Appointment("SARR", "234-4234-432", preferredTime,GP2);
- 
-        Ap1.printDetails();
-
-
-
+        GP1.GeneralPDetails();
+        GP2.GeneralPDetails();
+        GP3.GeneralPDetails();
+        Ps1.PsychologistDetails();
+        Ps2.PsychologistDetails();
+        
+        System.out.println("--------------------------------------------");
+        
+        
+        // Part 5 – Collection of appointments
         ArrayList<Appointment> appointments = new ArrayList<>();
-        createAppointment(appointments, "John Doe", "555-1234-5678", LocalTime.of(11, 30), GP1);
+        createExistingAppointment(appointments, "John Doe", "234-4234-432", LocalTime.of(11, 30), GP2);
+        createExistingAppointment(appointments, "Peter", "555-4342-567", LocalTime.of(14, 30), GP1);
+        createExistingAppointment(appointments, "Brown", "523-7654-321", LocalTime.of(9, 0), Ps1);
+        createExistingAppointment(appointments, "Davis", "526-4234-678", LocalTime.of(11, 15), Ps2);
  
-        printExistingAppointments(appointments);
+        printAppointments(appointments);
  
-        cancelBooking(appointments, "987-654-3210");
-        cancelBooking(appointments, "555-1234-5678");
+        cancelBooking(appointments, "987-6543-321");
+        cancelBooking(appointments, "555-4342-567");
+        
+        System.out.println("The updated collection of appointments");
+        printAppointments(appointments);
+
+        System.out.println("--------------------------------------------");
     }
  
-    public static void createAppointment(ArrayList<Appointment> appointments, String patientName, 
+    public static void createExistingAppointment(ArrayList<Appointment> appointments, String patientName, 
         String patientMobilePhone, LocalTime timeSlot, HealthProfessional selectedDoctor) {
         if (patientName.isEmpty() || patientMobilePhone.isEmpty() || timeSlot == null || selectedDoctor == null) {
             System.out.println("Invalid appointment information. Appointment cannot be created.");
@@ -56,7 +69,7 @@ public class AssignmentOne {
         System.out.println("Appointment created successfully.");
     }
  
-    public static void printExistingAppointments(ArrayList<Appointment> appointments) {
+    public static void printAppointments(ArrayList<Appointment> appointments) {
         if (appointments.isEmpty()) {
             System.out.println("No existing appointments.");
         } else {
