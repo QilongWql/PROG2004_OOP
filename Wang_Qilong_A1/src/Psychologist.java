@@ -1,3 +1,4 @@
+////Part 2 – Child classes of Psychologist
 public class Psychologist extends HealthProfessional {
     private String Professional;
     

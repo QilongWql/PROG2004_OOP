@@ -1,3 +1,4 @@
+//Part 1 – Base class
 public class HealthProfessional {
     protected int hpID;
     protected String hpName;

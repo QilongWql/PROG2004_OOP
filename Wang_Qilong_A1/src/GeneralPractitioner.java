@@ -1,3 +1,4 @@
+//Part 2 – Child classes of General Practitioner
 public class GeneralPractitioner extends HealthProfessional {
     private String Degree;
     
